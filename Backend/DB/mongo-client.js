@@ -1,7 +1,7 @@
 if(process.env.NODE_ENV !=='PRODUCTION'){
     require('dotenv').config()
 }
-const mongoClient = require('mongodb').mongoClient
+const mongoClient = require('mongodb').MongoClient;
 
 const connection = new mongoClient(process.env.MONGO_URL)
 

@@ -7,8 +7,8 @@ const connection = new mongoClient(process.env.MONGO_URL)
 
 async function getDB(){
     const db = connection.db('PickUp_Or_FessUp')
-    db = db.collection('user')
-    return db.collection(user)
+    const collection = db.collection('user')
+    return collection
 }
 
 module.exports = {getDB,connection}

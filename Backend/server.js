@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const {getDB, connection}= require('./DB/mongo-client.js')
 const PORT = process.env.PORT
 const mongoUrl = process.env.MONGO_URL
+const routes = require('./routes.js')
 
 mongoose.connect(mongoUrl)
     .then(()=>{
@@ -15,6 +16,7 @@ mongoose.connect(mongoUrl)
     })
 
 app.use(express.json())
+app.use('/api',routes)
 
 app.get("/ping",(req,res)=>{
     return res.send("This is the ping route")
@@ -32,6 +34,6 @@ try {
 })
 
 app.listen(PORT,()=>{
-    console.log(`Server is running on ${PORT}`)
+    console.log(`Server is running on http://localhost:${PORT}`)
 
 });

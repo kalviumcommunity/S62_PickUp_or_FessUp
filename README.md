@@ -21,3 +21,7 @@ The MERN STACK and additional things if required.
 Why this project:
 
 I chose this particular idea as the only thing told to us was to pick something "'as silly as possible". To me, this project seemed like a fun and silly idea to create. It seems interesting to me because I think it is something that hasnt been done before at all and that makes it a personal milestone for me to complete. I'll be using a lot of creativity for it for the User Interface as I have never come across a website that does both of pickuplines and regrets at the same time. I will also be learning MERN STACK for the first time as a result of which I will be developing skills on this topic.
+
+
+# Deployment link:
+https://visionary-lily-f48756.netlify.app/

@@ -1,12 +1,12 @@
+import {Routes, Route} from 'react-router-dom';
 import PickupLine from "./components/PickupLine"
 import "./App.css"
 function App(){
   return (
     <>
-    <div className="homepage">
-    <h1>This is the landing page</h1>
-    </div>
-    <PickupLine/>
+      <Routes>
+        <Route path="/pickup" element={<PickupLine />} />
+      </Routes>
     </>
   )
 }

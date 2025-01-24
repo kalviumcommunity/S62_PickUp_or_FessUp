@@ -2,10 +2,6 @@ import './PickupLine.css';
 const PickupLine = () => {
   // Static data
   const pickupLines = [
-    "Are you a magician? Because whenever I look at you, everyone else disappears.",
-    "Is your name Google? Because you have everything I've been searching for.",
-    "Do you have a Band-Aid? Because I just scraped my knee falling for you.",
-    "Do you believe in love at first sight or should I walk by again?",
     "Are you French? Because Eiffel for you."
   ];
 

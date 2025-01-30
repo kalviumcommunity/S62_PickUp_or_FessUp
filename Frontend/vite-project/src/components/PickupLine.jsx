@@ -6,14 +6,16 @@ const PickupLine = () => {
   ];
 
   return (
-    <div className="pickup-line-container">
-      <h2>Pickup Lines Collection</h2>
-      <div className="pickup-lines-list">
-        {pickupLines.map((line, index) => (
-          <div key={index} className="pickup-line-item">
-            <blockquote>{line}</blockquote>
-          </div>
-        ))}
+    <div className='FullThing-pickup'>
+      <div className="pickup-line-container">
+        <h2>Pickup Lines Collection</h2>
+        <div className="pickup-lines-list">
+          {pickupLines.map((line, index) => (
+            <div key={index} className="pickup-line-item">
+              <blockquote>{line}</blockquote>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Regret from './components/Regret';
 function App(){
   return (
     <>
+
       <Routes>
         <Route path="/pickup" element={<PickupLine />} />
         <Route path="/" element={<HomePage />} />

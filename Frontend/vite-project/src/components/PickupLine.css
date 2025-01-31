@@ -1,23 +1,29 @@
+*{
+  margin: 0%;
+}
+.FullThing-pickup {
+  background-color: #eb8ec3;
+  height: 100vh;
+}
 .pickup-line-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #eb8ec3;
-    border-radius: 10px;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
-  }
-  
-  .pickup-lines-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .pickup-line-item blockquote {
-    margin: 15px 0;
-    padding: 10px;
-    background-color: #eb8ec3;
-    border-left: 5px solid #bc0980;
-    font-style: italic;
-  }
-  
+  max-width: 600px;
+  /* margin: 20px auto; */
+  padding: 20px;
+  background-color: #eb8ec3;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1); 
+}
+
+.pickup-lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pickup-line-item blockquote {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #eb8ec3;
+  border-left: 5px solid #bc0980;
+  font-style: italic;
+}

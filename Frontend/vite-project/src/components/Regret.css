@@ -1,0 +1,31 @@
+*{
+    margin: 0%;
+}
+.FullThing-regret {
+  height: 100vh;
+  background-color: #686565;
+}
+.regret-container {
+  max-width: 600px;
+  /* margin: 20px auto; */
+  padding: 20px;
+  background-color: #686565; /* Black */
+  border-radius: 10px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
+}
+
+.regret-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #ffffff; /* White text */
+}
+
+.regret-item blockquote {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #333333; /* Dark grey */
+  border-left: 5px solid #ffffff; /* White border for emphasis */
+  font-style: italic;
+  color: #ffffff; /* White text inside the blockquote */
+}

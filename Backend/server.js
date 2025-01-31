@@ -1,39 +1,44 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-require('dotenv').config()
-const mongoose = require('mongoose')
-const {getDB, connection}= require('./DB/mongo-client.js')
-const PORT = process.env.PORT
-const mongoUrl = process.env.MONGO_URL
-const routes = require('./routes.js')
+require("dotenv").config();
+const cors = require("cors");
+const { connectDB } = require("./DB/mongo-client.js"); // Import the fixed DB connection
+const routes = require("./routes.js");
 
-mongoose.connect(mongoUrl)
-    .then(()=>{
-        console.log('Connected to database')
-    })
-    .catch(()=>{
-        console.log('Error connecting to database')
-    })
+const PORT = process.env.PORT;
 
-app.use(express.json())
-app.use('/api',routes)
+// Middleware
+app.use(express.json());
+app.use(cors()); // Allow frontend to access backend
 
-app.get("/ping",(req,res)=>{
-    return res.send("This is the ping route")
-})
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow requests from this port
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow the relevant HTTP methods
+    credentials: true, // Allow credentials (cookies, authorization headers)
+  })
+);
+// Ensure database connection before starting the server
+app.use("/api", routes);
 
-app.get('/',async(req,res)=>{
-try {
-    const checkStatus = await connection.connect()
-    const readyState = connection.topology.isConnected()
-    ?'connected':'disconnected';
-    res.send(`<h3>Database Connection Status: ${readyState}</h3>`)
-} catch (error) {
-    res.status(500).send({message:error.message})
-}
-})
+app.get("/ping", (req, res) => {
+  return res.send("This is the ping route");
+});
 
-app.listen(PORT,()=>{
-    console.log(`Server is running on http://localhost:${PORT}`)
+app.get("/", async (req, res) => {
+  const dbStatus = (await connectDB()) ? "connected" : "disconnected";
+  res.send(`<h3>Database Connection Status: ${dbStatus}</h3>`);
+});
 
+connectDB()
+  .then((db) => {
+    console.log("✅ Database connected successfully");
+  })
+  .catch((err) => {
+    console.error("❌ Error initializing database:", err);
+    process.exit(1);
+  });
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });

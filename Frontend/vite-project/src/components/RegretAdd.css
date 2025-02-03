@@ -1,0 +1,66 @@
+.container-regret {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0bc14b10-0821-490a-9b10-4ea9ce098904/ddmeen5-88ae6c82-1de1-4096-b5c6-1a3920cb43d9.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBiYzE0YjEwLTA4MjEtNDkwYS05YjEwLTRlYTljZTA5ODkwNFwvZGRtZWVuNS04OGFlNmM4Mi0xZGUxLTQwOTYtYjVjNi0xYTM5MjBjYjQzZDkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QGdCLqYC2EPICl1fay1tHL3Whk4H74Vu21a0Yy_jwNE');
+    background-color: #646464; 
+  }
+  
+  .regret-form {
+    background: #ffffff; 
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 24px rgba(0, 0, 0, 0.5); 
+    width: 360px;
+    text-align: center;
+    border: 2px solid #000000;
+  }
+  
+  .form-title-regret {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+  }
+  
+  .input-field-regret {
+    width: 100%;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    color: #000000; 
+    box-shadow: #000000;
+    resize: none;
+    background-color: #8f8f8f;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .input-field-regret:focus {
+    border-color: #000000; 
+    box-shadow: 0 10 12px rgba(0, 0, 0, 0.5);
+  }
+  
+  .submit-btn-regret {
+    margin-top: 16px;
+    background-color: #3d3c3c; 
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .submit-btn-regret:hover {
+    background-color: #141515; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .submit-btn-regret:active {
+    transform: scale(0.98); 
+  }
+  

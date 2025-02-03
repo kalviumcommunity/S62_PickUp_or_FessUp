@@ -1,22 +1,33 @@
-import './Regret.css';  
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./Regret.css";
+import { Link } from "react-router-dom";
+
 const Regret = () => {
-  // Static data
-  const Regret = [
-    "I called my crush by my ex's name"
-  ];
+  const [regrets, setRegrets] = useState([]);
+
+  useEffect(() => {
+  axios.get("http://localhost:3000/api/regrets") // ✅ Check if this URL matches backend
+    .then(response => setRegrets(response.data))
+    .catch(error => console.error("Error fetching regrets:", error));
+}, []);
+
 
   return (
     <div className="FullThing-regret">
-        <div className="regret-container">
+      <div className="regret-container">
         <h2>Regret Collection</h2>
         <div className="regret-list">
-            {Regret.map((line, index) => (
+          {regrets.map((line, index) => (
             <div key={index} className="regret-item">
-                <blockquote>{line}</blockquote>
+              <blockquote>{line.content}</blockquote>
             </div>
-            ))}
+          ))}
         </div>
-        </div>
+        <Link to="/add-regret">
+          <button className="add-regret-btn">Add your regret</button>
+        </Link>
+      </div>
     </div>
   );
 };

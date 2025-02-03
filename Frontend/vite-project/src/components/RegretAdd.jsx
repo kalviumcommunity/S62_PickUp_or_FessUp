@@ -1,16 +1,15 @@
 import { useState } from "react";
-import "./RegretAdd.css"; // Import the CSS file
 import axios from 'axios';
+import "./RegretAdd.css"; // Import the CSS file
 import { useNavigate } from "react-router-dom";
 
 const AddRegret = () => {
   const [content, setContent] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Submitted Regret:", content);
-    
+  const navigate = useNavigate()
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log("Submitted Regret:", content);
+      
     try {
       const response = await axios.post("http://localhost:3000/api/add-regret", {
         content, // Sending the content in JSON format

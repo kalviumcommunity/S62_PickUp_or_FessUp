@@ -9,7 +9,7 @@ const AddPickUpLine = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Regret:", content);
+    console.log("Submitted PickupLine:", content);
 
     try {
       const response = await axios.post("http://localhost:3000/api/add-pickup-line", {

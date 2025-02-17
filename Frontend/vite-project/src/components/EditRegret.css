@@ -1,0 +1,55 @@
+.EditRegret {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #6b6b6b;
+    font-family: Arial, sans-serif;
+  }
+  
+  .EditRegret h2 {
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .EditRegret form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .EditRegret-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .EditRegret-input:focus {
+    border-color: #000000;
+  }
+  
+  .EditRegret-submit {
+    background-color: #494748;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .EditRegret-submit:hover {
+    background-color: #000000;
+    transform: scale(1.05);
+  }
+  

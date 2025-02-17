@@ -60,7 +60,7 @@ const PickupLine = () => {
         <Link to="/add-pickup-line">
           <button className="add-pickup-line-btn">Add Pickup Line</button>
         </Link>
-        <Link to="/">
+        <Link to="/home-page">
         <button className="back-to-HP-pickup">HomePage</button>
         </Link>
         </div>

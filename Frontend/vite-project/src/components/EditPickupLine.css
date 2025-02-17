@@ -1,0 +1,55 @@
+.EditPickupLine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffe6f2;
+    font-family: Arial, sans-serif;
+  }
+  
+  .EditPickupLine h2 {
+    color: #d63384;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .EditPickupLine form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .EditPickupLine-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #d63384;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .EditPickupLine-input:focus {
+    border-color: #b82c70;
+  }
+  
+  .EditPickupLine-submit {
+    background-color: #d63384;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .EditPickupLine-submit:hover {
+    background-color: #b82c70;
+    transform: scale(1.05);
+  }
+  

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./EditRegret.css" 
 
 const EditRegret = () => {
   const { id } = useParams();
@@ -27,16 +28,17 @@ const EditRegret = () => {
   };
 
   return (
-    <div>
+    <div className="EditRegret">
       <h2>Edit Regret</h2>
       <form onSubmit={handleUpdate}>
-        <input 
+        <input
+        className="EditRegret-input" 
           type="text" 
           value={content} 
           onChange={(e) => setContent(e.target.value)} 
           required 
         />
-        <button type="submit">Update</button>
+        <button className="EditRegret-submit" type="submit">Update</button>
       </form>
     </div>
   );

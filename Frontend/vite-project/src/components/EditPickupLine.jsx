@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./EditPickupLine.css"
 
 const EditPickupLine = () => {
   const { id } = useParams();
@@ -27,16 +28,17 @@ const EditPickupLine = () => {
   };
 
   return (
-    <div>
+    <div className="EditPickupLine">
       <h2>Edit Pickup Line</h2>
       <form onSubmit={handleUpdate}>
-        <input 
+        <input
+        className="EditPickupLine-input" 
           type="text" 
           value={content} 
           onChange={(e) => setContent(e.target.value)} 
           required 
         />
-        <button type="submit">Update</button>
+        <button className="EditPickupLine-submit" type="submit">Update</button>
       </form>
     </div>
   );

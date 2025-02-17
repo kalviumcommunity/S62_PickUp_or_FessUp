@@ -1,23 +1,74 @@
 const express = require("express");
 const router = express.Router();
 const { connectDB } = require("./DB/mongo-client.js"); // Ensure this is correctly imported
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // Test route to see if routes are working
 router.get("/", (req, res) => {
   res.send("API is working");
 });
 
-// Route to get users
-router.get("/users", async (req, res) => {
+// Signup Route
+router.post("/signup", async (req, res) => {
   try {
     const db = await connectDB();
-    // console.log(collection);
-    const users = await db.collection("user").find().toArray();
-    res.json(users);
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const existingUser = await db.collection("Users").findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists. Please login." });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = { name, email, password: hashedPassword };
+    
+    await db.collection("Users").insertOne(newUser);
+    res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching users", er: error.message });
+    res.status(500).json({ message: "Error signing up", error: error.message });
+  }
+});
+
+// Login Route
+router.post("/login", async (req, res) => {
+  try {
+    const db = await connectDB();
+    const { email, password } = req.body;
+
+    const user = await db.collection("Users").findOne({ email });
+    if (!user) return res.status(400).json({ message: "User not found" });
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials" });
+
+    const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
+    res.json({ message: "Login successful", token, user: { _id: user._id, name: user.name, email: user.email } });
+  } catch (error) {
+    res.status(500).json({ message: "Error logging in", error: error.message });
+  }
+});
+
+// Protected route example (Fetching User Data)
+router.get("/users/:id", async (req, res) => {
+  try {
+    const db = await connectDB();
+    const { id } = req.params;
+
+    if (!ObjectId.isValid(id)) return res.status(400).json({ message: "Invalid user ID" });
+
+    const user = await db.collection("Users").findOne({ _id: new ObjectId(id) }, { projection: { password: 0 } });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching user", error: error.message });
   }
 });
 
@@ -144,7 +195,6 @@ router.delete("/regrets/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting Regret", error: error.message });
   }
 });
-
 
 // Update a regret
 router.put("/regrets/:id", async (req, res) => {

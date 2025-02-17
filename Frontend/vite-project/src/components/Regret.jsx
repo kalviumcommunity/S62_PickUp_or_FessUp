@@ -60,7 +60,7 @@ const Regret = () => {
           <Link to="/add-regret">
             <button className="add-regret-btn">Add your regret</button>
           </Link>
-          <Link to="/">
+          <Link to="/home-page">
           <button className="back-to-HP-regret">HomePage</button>
           </Link>
         </div>

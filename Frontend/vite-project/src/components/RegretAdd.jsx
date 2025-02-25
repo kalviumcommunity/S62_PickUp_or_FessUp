@@ -1,24 +1,27 @@
 import { useState } from "react";
 import axios from 'axios';
-import "./RegretAdd.css"; // Import the CSS file
+import "./RegretAdd.css"; 
 import { useNavigate } from "react-router-dom";
 
 const AddRegret = () => {
   const [content, setContent] = useState("");
-  const navigate = useNavigate()
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      console.log("Submitted Regret:", content);
-      
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
     try {
-      const response = await axios.post("http://localhost:3000/api/add-regret", {
-        content, // Sending the content in JSON format
-      });
+      const token = localStorage.getItem("token"); // Get token from storage
 
-      console.log("Response Data:", response.data); // Log response to check success
-      setContent(""); // Clear input field
+      const response = await axios.post(
+        "http://localhost:3000/api/add-regret",
+        { content },
+        { headers: { Authorization: `Bearer ${token}` } } // Attach token
+      );
 
-      navigate("/regret"); // Redirect to pickup page after successful submission
+      console.log("Response Data:", response.data);
+      setContent(""); 
+      navigate("/regret"); 
     } catch (error) {
       console.error("Error adding regret:", error.response?.data || error.message);
     }
@@ -36,7 +39,7 @@ const AddRegret = () => {
           rows="4"
           required
         />
-          <button type="submit" className="submit-btn-regret">Submit</button>
+        <button type="submit" className="submit-btn-regret">Submit</button>
       </form>
     </div>
   );

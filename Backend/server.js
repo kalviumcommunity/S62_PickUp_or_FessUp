@@ -9,7 +9,6 @@ const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Allow frontend to access backend
 
 app.use(
   cors({

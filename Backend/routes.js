@@ -3,9 +3,22 @@ const router = express.Router();
 const { connectDB } = require("./DB/mongo-client.js"); // Ensure this is correctly imported
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const SECRET_KEY = process.env.SECRET_KEY;
 
+function authenticate(req, res, next) {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    console.log("Decoded Token:", decoded); // Debug log
+    req.user = decoded; // Attach user data
+    next();
+  } catch (error) {
+    res.status(403).json({ message: "Invalid token" });
+  }
+}
 // Test route to see if routes are working
 router.get("/", (req, res) => {
   res.send("API is working");
@@ -48,7 +61,7 @@ router.post("/login", async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id, name: user.name }, SECRET_KEY, { expiresIn: "1h" });
     res.json({ message: "Login successful", token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error: error.message });
@@ -84,18 +97,29 @@ router.get("/pickup-lines", async (req, res) => {
 });
 
 // Add a new pickup line
-router.post("/add-pickup-line", async (req, res) => {
+router.post("/add-pickup-line", authenticate, async (req, res) => {
   try {
     const db = await connectDB();
     const { content } = req.body;
+
     if (!content) return res.status(400).json({ message: "Content is required" });
 
-    await db.collection("PickupLine").insertOne({ content });
-    res.json({ message: "Pickup line added successfully!" });
+    const newPickupLine = {
+      content,
+      createdBy: req.user.name, // Attach logged-in user's name
+      createdAt: new Date()
+    };
+    console.log("User in add-pickup-line route:", req.user);
+    console.log("User from middleware:", req.user);
+
+  
+    await db.collection("PickupLine").insertOne(newPickupLine);
+    res.json({ message: "Pickup line added successfully!", newPickupLine });
   } catch (error) {
     res.status(500).json({ message: "Error adding pickup line", error: error.message });
   }
 });
+
 
 // Fetch all regrets
 router.get("/regrets", async (req, res) => {
@@ -109,14 +133,21 @@ router.get("/regrets", async (req, res) => {
 });
 
 // Add a new regret
-router.post("/add-regret", async (req, res) => {
+router.post("/add-regret", authenticate, async (req, res) => {
   try {
     const db = await connectDB();
     const { content } = req.body;
+
     if (!content) return res.status(400).json({ message: "Content is required" });
 
-    await db.collection("Regret").insertOne({ content });
-    res.json({ message: "Regret added successfully!" });
+    const newRegret = {
+      content,
+      createdBy: req.user.name || "Anonymous", // Attach logged-in user's name
+      createdAt: new Date()
+    };
+
+    await db.collection("Regret").insertOne(newRegret);
+    res.json({ message: "Regret added successfully!", newRegret });
   } catch (error) {
     res.status(500).json({ message: "Error adding regret", error: error.message });
   }

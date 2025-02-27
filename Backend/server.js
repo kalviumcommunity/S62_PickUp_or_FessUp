@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
+const cookieParser = require("cookie-parser") 
 const { connectDB } = require("./DB/mongo-client.js"); // Import the fixed DB connection
 const routes = require("./routes.js");
 
@@ -9,6 +10,7 @@ const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser())
 
 app.use(
   cors({
@@ -30,7 +32,7 @@ app.get("/", async (req, res) => {
 });
 
 connectDB()
-  .then((db) => {
+  .then(() => {
     console.log("✅ Database connected successfully");
   })
   .catch((err) => {

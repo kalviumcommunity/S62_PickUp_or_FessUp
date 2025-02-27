@@ -50,6 +50,7 @@ router.post("/signup", async (req, res) => {
 });
 
 // Login Route
+// Login Route (Sets Cookie)
 router.post("/login", async (req, res) => {
   try {
     const db = await connectDB();
@@ -62,10 +63,25 @@ router.post("/login", async (req, res) => {
     if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id, name: user.name }, SECRET_KEY, { expiresIn: "1h" });
+
+    // Set a cookie with the username
+    res.cookie("username", user.name, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Secure only in production
+      sameSite: "Strict",
+      maxAge: 3600000, // 1 hour
+    });
+
     res.json({ message: "Login successful", token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error: error.message });
   }
+});
+
+// Logout Route (Clears Cookie)
+router.post("/logout", (req, res) => {
+  res.clearCookie("username");
+  res.json({ message: "Logged out successfully" });
 });
 
 // Protected route example (Fetching User Data)

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "PickUp_OR_FessUp_API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,65 @@
+.container-pickup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://media.tenor.com/mMr6S-_lnaYAAAAj/heart-love.gif');
+    background-color: #fadaeb; 
+  }
+  
+  .pickup-form {
+    background: #ffffff; 
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 24px rgba(71, 36, 48, 0.5); 
+    width: 360px;
+    text-align: center;
+    border: 2px solid #ffb6c1;
+  }
+  
+  .form-title-pickup {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff1493;
+    margin-bottom: 30px;
+  }
+  
+  .input-field-pickup {
+    width: 100%;
+    border: 2px solid #ff1493;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+    color: #ff1493; 
+    resize: none;
+    background-color: #fff0f5;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .input-field-pickup:focus {
+    border-color: #ff4081; 
+    box-shadow: 0 0 12px rgba(127, 11, 50, 0.5);
+  }
+  
+  .submit-btn-pickup {
+    margin-top: 16px;
+    background-color: #ff1493; 
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .submit-btn-pickup:hover {
+    background-color: #e91e63; 
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+  }
+  
+  .submit-btn-pickup:active {
+    transform: scale(0.98); 
+  }
+  

@@ -74,8 +74,9 @@ router.post("/login", async (req, res) => {
 
     res.json({ message: "Login successful", token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (error) {
-    res.status(500).json({ message: "Error logging in", error: error.message });
-  }
+  console.error("LOGIN ERROR:", error);
+  res.status(500).json({ message: error.message });
+}
 });
 
 // Logout Route (Clears Cookie)

@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser")
 const { connectDB } = require("./DB/mongo-client.js"); // Import the fixed DB connection
 const routes = require("./routes.js");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
@@ -41,5 +41,5 @@ connectDB()
   });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on ${PORT}`);
 });

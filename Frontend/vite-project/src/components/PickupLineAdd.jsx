@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios"; // Import Axios
-import "./PickUpLineAdd.css";
+import "./PickupLineAdd.css";
 import { useNavigate } from "react-router-dom"; // Import navigate hook
 
 const AddPickUpLine = () => {

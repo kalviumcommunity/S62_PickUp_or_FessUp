@@ -19,7 +19,7 @@ const AddPickUpLine = () => {
       }
   
       const response = await axios.post(
-        "http://localhost:3000/api/add-pickup-line",
+        `${import.meta.env.VITE_API_URL}/api/add-pickup-line`,
         { content }, // Sending data
         {
           headers: {

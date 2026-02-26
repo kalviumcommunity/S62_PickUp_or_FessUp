@@ -9,7 +9,7 @@ const EditPickupLine = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/pickup-lines`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/pickup-lines`)
       .then(response => {
         const pickupLine = response.data.find(line => line._id === id);
         if (pickupLine) setContent(pickupLine.content);
@@ -20,7 +20,7 @@ const EditPickupLine = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/pickup-lines/${id}`, { content });
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/pickup-lines/${id}`, { content });
       navigate("/pickup"); // Redirect to main page after update
     } catch (error) {
       console.error("Error updating pickup line:", error);

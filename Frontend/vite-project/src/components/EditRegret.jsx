@@ -9,7 +9,7 @@ const EditRegret = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/regrets`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/regrets`)
       .then(response => {
         const Regret = response.data.find(line => line._id === id);
         if (Regret) setContent(Regret.content);
@@ -20,7 +20,7 @@ const EditRegret = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/regrets/${id}`, { content });
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/regrets/${id}`, { content });
       navigate("/regret"); // Redirect to main page after update
     } catch (error) {
       console.error("Error updating Regret:", error);

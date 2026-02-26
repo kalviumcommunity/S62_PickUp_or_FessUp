@@ -29,7 +29,7 @@ const Signup = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3000/api/signup", { name, email, password });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/signup`, { name, email, password });
       alert(response.data.message);
       
       // Store token if provided

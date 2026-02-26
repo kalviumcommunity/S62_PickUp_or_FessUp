@@ -12,7 +12,7 @@ const PickupLine = () => {
   }, []);
 
   const fetchPickupLines = () => {
-    axios.get("http://localhost:3000/api/pickup-lines")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/pickup-lines`)
       .then(response => setPickupLines(response.data))
       .catch(error => console.error("Error fetching pickup lines:", error));
   };
@@ -22,7 +22,7 @@ const PickupLine = () => {
     if (!window.confirm("Are you sure you want to delete this pickup line?")) return;
 
     try {
-      const response = await axios.delete(`http://localhost:3000/api/pickup-lines/${id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/pickup-lines/${id}`);
       console.log("Delete response:", response.data);
       setPickupLines(pickupLines.filter(line => line._id !== id));
     } catch (error) {

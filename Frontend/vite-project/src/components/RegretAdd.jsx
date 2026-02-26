@@ -14,7 +14,7 @@ const AddRegret = () => {
       const token = localStorage.getItem("token"); // Get token from storage
 
       const response = await axios.post(
-        "http://localhost:3000/api/add-regret",
+        `${import.meta.env.VITE_API_URL}/api/add-regret`,
         { content },
         { headers: { Authorization: `Bearer ${token}` } } // Attach token
       );

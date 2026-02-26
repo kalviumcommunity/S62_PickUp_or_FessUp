@@ -12,7 +12,7 @@ const Regret = () => {
   }, []);
 
   const fetchRegrets = () => {
-    axios.get("http://localhost:3000/api/regrets")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/regrets`)
       .then(response => setRegrets(response.data))
       .catch(error => console.error("Error fetching regrets:", error));
   };
@@ -21,7 +21,7 @@ const Regret = () => {
     if (!window.confirm("Are you sure you want to delete this regret?")) return;
   
     try {
-      await axios.delete(`http://localhost:3000/api/regrets/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/regrets/${id}`);
       setRegrets(regrets.filter(line => line._id !== id));
     } catch (error) {
       console.error("Error deleting regret:", error.response?.data || error.message);
